@@ -1,0 +1,10 @@
+﻿################################################################################
+# Este arquivo .gitignore foi criado automaticamente pelo Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/ProjectSettings.json
+/.vs/slnx.sqlite
+/.vs/PlaylistES2/v17
+/.vs/VSWorkspaceState.json
+/PlaylistES/obj/Debug/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs
+/PlaylistES/obj/Release/net6.0
