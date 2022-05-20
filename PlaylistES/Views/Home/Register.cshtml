@@ -1,0 +1,63 @@
+﻿@{
+    ViewData["Title"] = "Please sign in";
+}
+@*LOGIN FORM: https://codepen.io/codewatcher/pen/ExVdBmE *@
+<html>
+    <head>
+        <Title>Login Form</Title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+    <body>
+        <form method="post">
+            <div class="form-container">
+                <div class="formlogin">
+                    <h2>Register</h2>
+                    <div class="input">
+                        <div class="inputBox">
+                            <label for="">Username</label>
+                            <input type="text" required>
+                        </div>
+                        <div class="inputBox">
+
+                            <label for="">Password</label>
+                            <div class="flex">
+                                <input id="pwinput" type="password" required> <button class="eye" onclick=TogglePW() type="button"><i class="material-icons">visibility</i></button>
+                            </div>
+                            <label for="">Confirm password</label>
+                            <div class="flex">
+                                <input id="pwinput2" type="password" required> <button class="eye" onclick=TogglePW2() type="button"><i class="material-icons">visibility</i></button>
+                            </div>
+                        </div>
+                        <div class="inputBox">
+                            <input type="submit" name="" value="Sign In"> 
+                        </div>   
+                    </div>  
+                </div>
+            </div>
+        </form>
+    </body>
+</html>
+
+<script>
+    function TogglePW(){
+       var  Check=document.getElementById("pwinput").getAttribute("type")
+       var pw = document.getElementById("pwinput")
+       if (Check=="password"){   
+            pw.setAttribute("type","text")
+       }else{
+           pw.setAttribute("type","password")
+       }
+    }
+    function TogglePW2(){
+       var  Check=document.getElementById("pwinput2").getAttribute("type")
+       var pw = document.getElementById("pwinput2")
+       if (Check=="password"){   
+            pw.setAttribute("type","text")
+       }else{
+           pw.setAttribute("type","password")
+       }
+    }
+</script>

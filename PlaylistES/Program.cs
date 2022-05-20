@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PlaylistES.Data;
+using PlaylistES.Models;
+using PlaylistES.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,19 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+
+
+// Add services to the container.
+builder.Services.Configure<ESDatabaseSettings>(
+    builder.Configuration.GetSection("PlaylistDatabase"));
+
+builder.Services.AddSingleton<UserService>();
+
+builder.Services.AddSingleton<YtVideoService>();
+
+builder.Services.AddSingleton<PlaylistsService>();
+
+
 
 var app = builder.Build();
 

@@ -1,18 +1,895 @@
-html {
-  font-size: 14px;
+/* Página principal */
+:root {
+    --background: #12223b;
+    --backgroundB: #251f5c; /*#251f5c*/
+    --Sidebar: #0c1c36;
+    --SidebarB: #0c1c36;
+    --SidebarTitle: #e8eeff;
+    --SidebarTXT: #808080;
+    --Detail: #e63030;
+    --HoverBody: #7c97de;
+    --BodyTitle: #212121;
+    --BodyTXT: #363535;
+
+    --DetailB: #131524;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
 
 body {
-  margin-bottom: 60px;
+    background-image: linear-gradient(to right, var(--background), var(--backgroundB));
+    overflow: hidden;
 }
+
+.SideBar {
+    background-color: var(--Sidebar);
+    width: 300px;
+    justify-content: center;
+    height: 100%;
+    position: fixed;
+    left: 0;
+}
+
+
+    .SideBar .ProfContainer {
+        margin-top: 5px;
+        max-height: 400px;
+        display: grid;
+        grid-auto-columns: auto;
+    }
+
+        .SideBar .ProfContainer .ProfName {
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--SidebarTitle);
+            text-shadow: 3px 3px 20px var(--Detail);
+        }
+
+        .SideBar .ProfContainer .imgP {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 7px;
+            margin-bottom: 7px;
+            border: 2px solid var(--Detail);
+            border-radius: 50%;
+            padding: 2px;
+            width: 130px;
+            height: 130px;
+            user-select: none;
+        }
+
+            .SideBar .ProfContainer .imgP:hover {
+                cursor: pointer;
+                opacity: 70%;
+            }
+
+        .SideBar .ProfContainer .ProfDesc {
+            text-align: center;
+            font-weight: 400;
+            font-size: 14px;
+            color: var(--SidebarTXT);
+            max-height: 150px;
+            word-wrap: break-word;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 10px;
+        }
+
+    /* background-color: #252947; Hover color */
+
+    .SideBar .Divider {
+        margin-left: auto;
+        margin-right: auto;
+        border: 2px solid var(--Detail);
+        border-radius: 5px;
+        background: var(--Detail);
+        width: 250px;
+        height: 4px;
+    }
+
+    .SideBar .PLContainer {
+        text-overflow: ellipsis;
+        max-height: calc(100%- 300px);
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+
+
+    .SideBar .PLContainer2 .imgPL {
+        justify-content: center;
+        border: 2px solid var(--Detail);
+        border-radius: 10px;
+        padding: 2px;
+        width: 250px;
+        height: 150px;
+        margin: 7px;
+        user-select: none;
+    }
+
+    .SideBar .PLContainer2 .addcontent {
+        justify-content: center;
+        border: 3px dashed var(--Detail);
+        border-radius: 10px;
+        color: var(--Detail);
+        padding: 2px;
+        width: 200px;
+        height: 120px;
+        margin: 7px;
+        align-items: center;
+        display: flex;
+        background-color: #24273e;
+        user-select: none;
+    }
+
+        .SideBar .PLContainer2 .addcontent i {
+            font-size: 100px;
+        }
+
+        .SideBar .PLContainer2 .addcontent:hover {
+            cursor: pointer;
+            background-color: var(--SidebarB);
+        }
+
+    .SideBar .PLContainer2 {
+        margin-top: 10px;
+        display: grid;
+        min-width: auto;
+        justify-content: center;
+    }
+
+        .SideBar .PLContainer2 .PLTitle {
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--SidebarTitle);
+        }
+
+        .SideBar .PLContainer2 .PLDescription {
+            text-align: center;
+            font-weight: 400;
+            font-size: 14px;
+            color: var(--SidebarTXT);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-height: 80px;
+        }
+
+/* Página LOGIN/REGISTO: https://codepen.io/codewatcher/pen/ExVdBmE */
+.formlogin {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    position: relative;
+    background: var(--DetailB);
+    border: 1px solid #000;
+    width: 350px;
+    padding: 40px 40px 60px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+
+    .formlogin h2 {
+        color: #fff;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 5px;
+    }
+
+    .formlogin .input {
+        margin-top: 40px;
+        text-align: left;
+    }
+
+        .formlogin .input .inputBox {
+            margin-top: 10px;
+        }
+
+            .formlogin label {
+                display: block;
+                color: #fff;
+                margin-bottom: 5px;
+                font-size: 18px;
+                letter-spacing: 1px;
+            }
+
+            .formlogin .input .inputBox input {
+                position: relative;
+                width: 100%;
+                height: 40px;
+                border: none;
+                outline: none;
+                padding: 5px 15px;
+                background: linear-gradient(315deg,#e91e63,#5d02ff);
+                color: #fff;
+                font-size: 18px;
+                border-radius: 10px;
+            }
+            .formlogin .input .inputBox .flex {
+                display:flex;
+               
+            }
+
+                .formlogin .input .inputBox .flex input {
+                    position: relative;
+                    width: 90%;
+                  
+                }
+                .formlogin .input .inputBox .flex .eye {
+                    position: relative;
+                    width:20px;
+                    background-color: var(--DetailB);
+                    color: #fff;
+                    border:none;
+                    margin-left:3px;
+                }
+
+
+                .formlogin .input .inputBox input[type="submit"] {
+                    cursor: pointer;
+                    margin-top: 20px;
+                    letter-spacing: 1px;
+                }
+
+                    .formlogin .input .inputBox input[type="submit"]:hover {
+                        background: linear-gradient(315deg,#5d02ff,#e91e63);
+                    }
+
+                    .formlogin .input .inputBox input[type="submit"]:active {
+                        color: rgba(255, 255, 255, 0.521);
+                        background: linear-gradient(315deg,#e91e6271,#5f02ff8c);
+                    }
+
+.forgot {
+    margin-top: 10px;
+    color: #fff;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+    .forgot a {
+        color: #ff0800;
+    }
+
+.social {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+    .social button {
+        width: 75%;
+        border-radius: 20px;
+        margin-bottom: 15px;
+        padding: 5px 10px;
+        background: transparent;
+        border: 3px solid #222;
+        outline: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+    }
+
+    .social .border {
+        padding: 5px;
+        background: linear-gradient(315deg,#e91e63,#5d02ff);
+        border: var(--DetailB);
+        border-radius: 10px;
+    }
+
+    .social button i {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #fff;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+    }
+
+    .social button p {
+        color: #fff;
+        font-size: 13px;
+        margin-left: 10px;
+        letter-spacing: 1px;
+        margin-top: 15px;
+    }
+
+    .social button:hover {
+        background: linear-gradient(315deg,#326cd6,#5d02ff);
+    }
+
+        .social button:hover i {
+            filter: invert(1);
+        }
+
+    .social button:active {
+        background: linear-gradient(315deg,#5d02ff,#e91e63)
+    }
+
+/* MY Videos PAGE*/
+.VideoContainer {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill,minmax(18%,245px));
+    grid-auto-rows: 200px;
+    gap: 10px;
+    padding-top: 5px;
+    margin: 50px;
+    left: 300px;
+    width: calc(100% - 400px);
+    height: calc(100% - 250px);
+    position: fixed;
+    text-align: center;
+    overflow: scroll;
+    -ms-overflow-style: none; /* SCROLL BAR INVISIBLE :https://www.w3schools.com/howto/howto_css_hide_scrollbars.asp */
+}
+
+    .VideoContainer::-webkit-scrollbar {
+        display: none;
+    }
+
+.ContentC {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 11px;
+    user-select: none;
+    background-image: linear-gradient(120deg, var(--Sidebar), var(--SidebarB));
+    color: var(--SidebarTitle);
+    width: 225px;
+    margin: 10px;
+    position: relative;
+}
+
+    .ContentC .header {
+        display: flex;
+    }
+
+    .ContentC .delete {
+        font: 15px;
+        color: var(--Detail);
+        width: 25px;
+        border-radius: 30%;
+    }
+
+        .ContentC .delete:hover {
+            color: red;
+            background: rgba(255,255, 255, 0.3);
+        }
+
+   
+
+    .ContentC .VideoTitle {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 175px;
+        height: 24px;
+    }
+
+    .ContentC .Image-container {
+        height: fit-content;
+        width: fit-content;
+        display: block;
+    }
+
+        .ContentC .Image-container .duration {
+            width: fit-content;
+            height: fit-content;
+            font-size: 13px;
+            position: absolute;
+            bottom: 21px;
+            right: 16px;
+            background-color: rgba(2,2,2,0.5);
+        }
+
+    .ContentC::before { /*same as login form*/
+        content: '';
+        position: absolute;
+        top: -4px;
+        right: -5px;
+        bottom: -5px;
+        left: -4px;
+        background: linear-gradient(-45deg,#e91e63,#5d02ff);
+        z-index: -1;
+        transform: skew(3deg,2deg);
+        border-radius: 10px;
+    }
+
+
+    .ContentC img {
+        width: 200px;
+        height: 120px;
+        border: 3px solid var(--Detail);
+        border-radius: 4px;
+        user-select: none;
+        
+    }
+
+/*llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll*/
+.PlaylistContainer {
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill,minmax(18%,500px));
+    grid-auto-rows: 300px;
+    gap: 10px;
+    padding-top: 5px;
+    margin: 50px;
+
+    left: 300px;
+    width: calc(100% - 400px);
+    height: calc(100% - 250px);
+    position: fixed;
+    text-align: center;
+    overflow: scroll;
+    -ms-overflow-style: none; /* SCROLL BAR INVISIBLE :https://www.w3schools.com/howto/howto_css_hide_scrollbars.asp */
+}
+
+    .PlaylistContainer::-webkit-scrollbar {
+        display: none;
+    }
+
+    .PlaylistContainer .ContentCont {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        border-radius: 11px;
+        user-select: none;
+        background-image: linear-gradient(120deg, var(--Sidebar), var(--SidebarB));
+        color: var(--SidebarTitle);
+        width: 450px;
+        margin: 10px;
+
+        position: relative;
+    }
+        .PlaylistContainer .ContentCont .tools {
+            width: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            margin-left: 10px;
+            margin-right:-25px;
+        }
+
+        .PlaylistContainer .ContentCont .VideoTitle {
+            font-size: 25px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 360px;
+            height: 30px;
+            margin:5px;
+        }
+
+        .PlaylistContainer .ContentCont .Image-container {
+            height: fit-content;
+            width: fit-content;
+            display: block;
+        }
+
+
+        .PlaylistContainer .ContentCont .bottom {
+            display: flex;
+            justify-content: space-between;
+
+        }
+
+            .PlaylistContainer .ContentCont .bottom .Numvids {
+                font-size: 18px;
+                text-align: right;
+                margin-top: 5px;
+            }
+
+        .PlaylistContainer .ContentCont .delete {
+            background-color: var(--SidebarB);
+            font-size: 50px;
+            color: var(--Detail);
+            width: 25px;
+            border-radius: 30%;
+            border: none;
+        }
+            .PlaylistContainer .ContentCont .tool {
+                background-color:var(--SidebarB);
+                font-size: 50px;
+                color: var(--SidebarTitle);
+                width: 25px;
+                border-radius: 30%;
+                border:none;
+            }
+
+            .PlaylistContainer .ContentCont .tool:hover {
+                color: white;
+                background: rgba(255,255, 255, 0.2);
+            }
+
+        .PlaylistContainer .ContentCont .delete:hover {
+            color: red;
+            background: rgba(255,255, 255, 0.2);
+        }
+
+
+        .PlaylistContainer .ContentCont::before { /*same as login form*/
+            content: '';
+            position: absolute;
+            top: -7px;
+            right: -7px;
+            bottom: -7px;
+            left: -7px;
+            background: linear-gradient(-45deg,#e91e63,#5d02ff);
+            z-index: -1;
+            transform: skew(3deg,2deg);
+            border-radius: 10px;
+        }
+
+
+
+        .PlaylistContainer .ContentCont img {
+            width: 360px;
+            height: 200px;
+            border: 3px solid var(--Detail);
+            border-radius: 4px;
+            user-select: none;
+        }
+
+
+.open-button {
+    background-color: #555;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    position: fixed;
+    bottom: 23px;
+    right: 28px;
+    width: 280px;
+}
+
+.searchContainer {
+    display: block;
+    padding-top: 5px;
+    left: 300px;
+    position: fixed;
+    width: calc(100% - 300px);
+    height: calc(100% - 160px);
+    text-align: center;
+    align-content: center;
+    overflow: scroll;
+    -ms-overflow-style: none;
+    background-image: linear-gradient(to right, var(--background), var(--backgroundB));
+    padding: 20px;
+}
+
+    .searchContainer::-webkit-scrollbar {
+        display: none;
+    }
+
+    .searchContainer .barContainer {
+        display: flex;
+        justify-content: center;
+        border-radius: 10px;
+        width: 100%;
+        height: 100px;
+        align-items: center;
+        flex-wrap: nowrap;
+        align-items: center;
+        border-radius: 50px;
+        background-color: var(--Sidebar);
+
+        color: var(--SidebarTitle);
+    }
+
+        .searchContainer .barContainer .btn {
+            width: 50px;
+            color: var(--SidebarTitle);
+            border-radius: 30px;
+        }
+
+        .searchContainer .barContainer .btn:hover {
+            cursor: pointer;
+            background: rgba(255,255, 255, 0.3);
+        }
+
+
+    .searchContainer .SearchResults {
+        display: grid;
+        justify-content: center;
+        grid-template-columns: repeat(auto-fill,minmax(18%,245px));
+        grid-auto-rows: 200px;
+        gap: 10px;
+        padding-top: 5px;
+        left: 300px;
+        margin-top:30px;
+        margin-left: 50px;
+        margin-right: 50px;
+        width: calc(100% - 400px);
+        height: calc(100% - 310px);
+        position: fixed;
+        text-align: center;
+        overflow: scroll;
+        -ms-overflow-style: none; /* SCROLL BAR INVISIBLE :https://www.w3schools.com/howto/howto_css_hide_scrollbars.asp */
+    }
+
+        .searchContainer .SearchResults::-webkit-scrollbar {
+            display: none;
+        }
+
+    .searchContainer .ContentC .VideoTitle {
+        width: 200px;
+    }
+    .searchContainer .SearchResults .addvid {
+        display: flex;
+        border-radius: 10px;
+        flex-direction: column;
+        align-content: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: 10;
+        background-color: rgba(1,1,1,0);
+        color: rgba(1,1,1,0);
+        border: none;
+        right: 0px;
+        top: 0px;
+        flex-wrap: wrap;
+    }
+    .searchContainer .SearchResults .addvid:hover {
+        color:black;
+        opacity:90%;
+        font-size:120px;
+        background:rgba(255,255,255,.2);
+        flex-direction: column;
+        align-content: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        cursor:pointer;
+    }
+
+    .search-bar {
+        width: 400px;
+    }
+
+
+
+/*llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll*/
+.WatchContainer {
+    display: flex;
+    left: 300px;
+    position: fixed;
+    width: calc(100% - 300px);
+    height: calc(100% - 160px);
+    text-align: center;
+    align-content: center;
+    overflow: scroll;
+    -ms-overflow-style: none;
+    background: linear-gradient(-180deg, var(--background), var(--backgroundB) );
+    padding: 20px;
+}
+
+    .WatchContainer .VideoPlaceholder {
+        width: 100%;
+        background: linear-gradient(-90deg, #3144a3, #5e1ee9 );
+        border-radius: 15px;
+    }
+
+        .WatchContainer .VideoPlaceholder .Player {
+            width: 100%;
+            height: 85%;
+            background-color: var(--Sidebar);
+            border-radius: 15px;
+        }
+
+        .WatchContainer .VideoPlaceholder .PlayingVidTitle {
+            font-size: 30px;
+            text-align: left;
+            margin-left: 10px;
+            padding: 5px;
+            color: var(--SidebarTitle);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+
+    .WatchContainer .MoreVids {
+        width: 30%;
+        min-width: 250px;
+        display: block;
+        background: linear-gradient(90deg, #3144a3, #5e1ee9 );
+        margin-left: 20px;
+        padding: 10px;
+        border-radius: 15px;
+    }
+
+    .WatchContainer::-webkit-scrollbar {
+        display: none;
+    }
+
+    .WatchContainer .MoreVids .NextVids {
+        width: 100%;
+        height: 100px;
+        padding: 10px;
+        display: flex;
+        justify-content: left;
+        background-color: #273682;
+        border-radius: 10px;
+        margin-bottom: 5px;
+    }
+
+.NextVids .Image-container {
+    width: fit-content;
+    height: 100px;
+    display: block;
+    border-radius: 10px;
+}
+
+    .NextVids .Image-container img {
+        height: 80px;
+        width: 140px;
+        border-radius: 5px;
+    }
+
+    .NextVids .Image-container .duration {
+        width: fit-content;
+        height: fit-content;
+        font-size: 12px;
+        position: relative;
+        bottom: 18px;
+        left: 110px;
+        color: white;
+        background-color: rgba(2,2,2,0.5);
+        border-bottom-right-radius: 5px;
+    }
+
+.WatchContainer .MoreVids .NextVids .VideoTitle {
+    padding: 10px;
+    font-size: 20px;
+    color: var(--SidebarTitle);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.Homepage {
+    display: flex;
+    flex-direction:column;
+    left: 300px;
+    position: fixed;
+    width: calc(100% - 300px);
+    height: calc(100% - 160px);
+    text-align: center;
+    align-content: center;
+    overflow: scroll;
+    -ms-overflow-style: none;
+    background-image: linear-gradient(-180deg, var(--background), var(--backgroundB) );
+
+}
+    .Homepage img {
+        height: 100%;
+        width:100%;
+        opacity:30%;
+        position:absolute;
+        z-index:1;
+        user-select:none;
+        
+
+    }
+    .Homepage::-webkit-scrollbar {
+        display:none;
+    }
+
+    .Homepage h1 {
+        margin-top: 10%;
+        z-index: 2;
+        color: var(--SidebarTitle);
+        text-shadow: 5px 5px 10px var(--Detail);
+    }
+
+
+.formPLContainer {
+  
+    margin: 50px;
+    left: 300px;
+    width: calc(100% - 400px);
+    height: calc(100% - 250px);
+    position: fixed;
+}
+
+.formPL {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--Sidebar);
+    width: 60%;
+    height: calc(100% - 100px);
+    border-radius:20px;
+    display:flex;
+    flex-direction:column;
+    padding:10px;
+    align-items:center;
+    justify-content:center;
+}
+    .formPL h1 {
+        
+       
+        color: white;
+        font-size: 50px;
+        margin-bottom: 10px;
+    }
+
+    .formPL label {
+        width: 70%;
+        height: 40px;
+        padding: 5px 15px;
+        color: white;
+        font-size:30px;
+        margin-bottom:10px;
+    }
+
+    .formPL .input {
+        width: 70%;
+        height: 40px;
+        border: none;
+        outline: none;
+        padding: 5px 15px;
+        background: linear-gradient(90deg, #3144a3, #5e1ee9 );
+        color: #fff;
+        font-size: 18px;
+        border-radius: 10px;
+        margin-bottom:20px;
+    }
+    .formPL .textbox {
+        width: 70%;
+        height: 160px;
+        border: none;
+        outline: none;
+        padding: 5px 15px;
+        background: linear-gradient(90deg, #3144a3, #5e1ee9 );
+        color: #fff;
+        font-size: 18px;
+        border-radius: 10px;
+    }
+
+    .formPL .confirm {
+        position: relative;
+        width: 50%;
+        height: 100px;
+        border: none;
+        outline: none;
+        padding: 5px 15px;
+        background: linear-gradient(90deg, #3144a3, #5e1ee9 );
+        color: #fff;
+        font-size: 18px;
+        border-radius: 10px;
+    }
+    .formPL input[type="submit"] {
+        cursor: pointer;
+        margin-top: 20px;
+        letter-spacing: 1px;
+    }
+
+        .formPL input[type="submit"]:hover {
+            background: linear-gradient(90deg,#5e1ee9,#3144a3);
+        }
+
+        .formPL input[type="submit"]:active {
+            color: rgba(255, 255, 255, 0.521);
+            background: linear-gradient(90deg,#5e1ee9,#3144a3);
+        }

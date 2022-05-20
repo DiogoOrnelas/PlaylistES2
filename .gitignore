@@ -3,3 +3,7 @@
 ################################################################################
 
 /.vs/PlaylistES/v17
+/PlaylistES/obj/Release/net6.0
+/.vs/PlaylistES2/v17
+/.vs
+/PlaylistES/obj/Debug/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs
