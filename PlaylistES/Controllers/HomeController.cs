@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PlaylistES.Models;
+using PlaylistES.Services;
 using System.Diagnostics;
+using Microsoft.Extensions.Options;
 
 namespace PlaylistES.Controllers
 {
@@ -23,10 +25,26 @@ namespace PlaylistES.Controllers
             return View();
         }
 
+        public IActionResult Home()
+        {
+            
+            return View();
+        }
+        public IActionResult Register()
+        {
+
+            return View();
+        }
+        public IActionResult Watch()
+        {
+
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
-}
+} 

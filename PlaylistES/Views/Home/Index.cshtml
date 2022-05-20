@@ -1,8 +1,52 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Please sign in";
 }
+@*LOGIN FORM: https://codepen.io/codewatcher/pen/ExVdBmE *@
+<html>
+    <head>
+        <Title>Login Form</Title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+    <body>
+        <form>
+        <div class="form-container">
+            <div class="formlogin">
+                <h2>Login</h2>
+                <div class="input">
+                    <div class="inputBox">
+                        <label for="">Username</label>
+                        <input type="text">
+                    </div>
+                    <div class="inputBox">
+                        <label for="">Password</label>
+                        <div class="flex">
+                            <input id="pwinput" type="password" required> <button type="button" class="eye" onclick=TogglePW()><i class="material-icons">visibility</i></button>
+                        </div>
+                    </div>
+                    <div class="inputBox">
+                        <input type="submit" name="" value="Sign In" required> 
+                    </div>
+                </div>
+                <p class="forgot">Don't have an account? <a href="/Home/Register">Click Here</a></p>
+               
+                </div>
+            </div>
+        </div>
+        </form>
+    </body>
+    <script>
+        function TogglePW(){
+           var  Check=document.getElementById("pwinput").getAttribute("type")
+           var pw = document.getElementById("pwinput")
+           if (Check=="password"){   
+                pw.setAttribute("type","text")
+           }else{
+               pw.setAttribute("type","password")
+           }
+        }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+    </script>
+</html>
