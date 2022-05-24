@@ -14,8 +14,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
-@if (SignInManager.IsSignedIn(User))
-{
+@*@if (SignInManager.IsSignedIn(User))
+{*@
       <nav class="navmenu">
         <ul class="menuItems">
             <a href='/Home/Home'><li>Home</li></a>
@@ -23,7 +23,7 @@
             <a href="/" ><li>Account</li></a>
         </ul>
     </nav>
-}
+@*}
 else
 {
  
@@ -33,7 +33,7 @@ else
             <a href='/Home/Register'><li>Register</li></a>   
         </ul>
     </nav>
-}
+}*@
 
      
 
