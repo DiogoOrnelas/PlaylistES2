@@ -501,6 +501,8 @@ body {
             width: 25px;
             border-radius: 30%;
             border: none;
+            display: flex;
+            justify-content: center;
         }
             .PlaylistContainer .ContentCont .tool {
                 background-color:var(--SidebarB);
@@ -509,6 +511,8 @@ body {
                 width: 25px;
                 border-radius: 30%;
                 border:none;
+                display:flex;
+                justify-content:center;
             }
 
             .PlaylistContainer .ContentCont .tool:hover {
