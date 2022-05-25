@@ -61,7 +61,9 @@
                 <div>
                     <div class="header">
                         <div class="VideoTitle">@Html.DisplayFor(modelItem => item.VideoTitle)</div>
-                        <div class="delete"><i class="material-icons">delete</i></div>
+                        <form class="delete" method="post" asp-action="Delete" asp-controller="YtVideos" asp-route-id="@playlist.PlaylistId" asp-route-vidId="@item.Video_id">
+                            <button class="delete" type="submit"><i class="material-icons">delete</i></button>
+                        </form>
                     </div>
                     <div class="Image-container">
                         <img draggable="false" class="imgPL" src=@Html.DisplayFor(modelItem => item.Thumbnail)>

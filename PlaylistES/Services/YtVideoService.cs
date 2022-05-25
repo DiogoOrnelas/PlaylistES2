@@ -27,7 +27,7 @@ namespace PlaylistES.Services
             await _VideoCollection.Find(_ => true).ToListAsync();
 
         public async Task<YouTubeVideo> GetOneAsync(string id) =>
-            await _VideoCollection.Find(x => x.PlaylistId == id).FirstOrDefaultAsync();
+            await _VideoCollection.Find(x => x.Video_id == id).FirstOrDefaultAsync();
 
         public async Task<List<YouTubeVideo>> GetAsync(string id) =>
             await _VideoCollection.Find(x => x.PlaylistId == id).ToListAsync();

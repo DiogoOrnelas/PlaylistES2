@@ -10,10 +10,14 @@ namespace PlaylistES.Controllers
     {
 
         private readonly PlaylistsService _PlaylistService;
+        private readonly YtVideoService _VideoService;
 
-        public PlaylistsController(PlaylistsService playlistService) =>
+        public PlaylistsController(PlaylistsService playlistService, YtVideoService videoService)
+        {
+            _VideoService = videoService;
             _PlaylistService = playlistService;
-        
+        }
+
         [HttpGet]
         public async Task<IActionResult>  MyPlaylists()
          {
@@ -48,7 +52,6 @@ namespace PlaylistES.Controllers
 
 
         [HttpPost]
-        //[Route("Playlist/CreatePlaylist")]
         public async Task<IActionResult> CreatePlaylist([FromForm] Playlists newPlaylist)
         {
             Console.WriteLine("Hello there! this is playlist: "+ newPlaylist.PlaylistName );
@@ -59,6 +62,27 @@ namespace PlaylistES.Controllers
             //return CreatedAtAction(nameof(Get), new { id = newPlaylist.PlaylistId }, newPlaylist);
             return Redirect("/Playlists/MyPlaylists");
         }
+
+        [HttpPost("{id:length(24)}")]
+        public async Task<IActionResult> Delete(string id)
+        {
+            var videos = await _VideoService.GetAsync(id);
+            var playlist = await _PlaylistService.GetOneAsync(id);
+            if (videos is null)
+            {
+                return NotFound();
+            }
+            foreach (var video in videos)
+            {
+                await _VideoService.RemoveAsync(video.id);
+
+            }
+
+            await _PlaylistService.RemoveAsync(id);
+
+            return Redirect("/Playlists/MyPlaylists");
+        }
+
 
         [HttpPut("{id:length(24)}")]
         public async Task<IActionResult> Update(string id, Playlists updatedPlaylist)
@@ -77,20 +101,7 @@ namespace PlaylistES.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id:length(24)}")]
-        public async Task<IActionResult> Delete(string id)
-        {
-            var playlist = await _PlaylistService.GetAsync(id);
-
-            if (playlist is null)
-            {
-                return NotFound();
-            }
-
-            await _PlaylistService.RemoveAsync(id);
-
-            return NoContent();
-        }
+        
     }
 }
 

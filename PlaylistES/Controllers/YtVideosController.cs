@@ -31,7 +31,6 @@ namespace PlaylistES.Controllers
 
 
         [HttpGet("{id:length(24)}")]
-        [Route("Videos/YTVideos/{id:length(24)}")]
         public async Task<IActionResult> Videos(string id)
         {
             var playlist = await _PlaylistService.GetOneAsync(id);
@@ -45,11 +44,47 @@ namespace PlaylistES.Controllers
             return View(video);
         }
 
-        public async Task<IActionResult> Add(string id)
+        [HttpPost("{id}")]
+        public async Task<IActionResult> Watch(string id, [FromQuery(Name = "watch")] string Watch)
         {
             var playlist = await _PlaylistService.GetOneAsync(id);
+            var video = await _VideoService.GetAsync(id);
 
-            return View();
+
+            var watch = await _VideoService.GetOneAsync(Watch);
+            if (video is null)
+            {
+                return NotFound();
+            }
+
+            if (Watch == "Default") {
+                ViewBag.Watch = video[0];
+            }
+            else {
+                ViewBag.Watch = watch;
+            }
+            ViewBag.Playlist = playlist;
+            
+
+            return View(video);
+        }
+
+        [HttpPost("{id:length(24)}")]
+        public async Task<IActionResult> Delete(string id, [FromQuery(Name = "vidId")] string videoId)
+        {
+
+
+            var video = await _VideoService.GetOneAsync(videoId);
+            if (video is null)
+            {
+                return NotFound();
+            }
+            var playlist = await _PlaylistService.GetOneAsync(id);
+            playlist.Videos.Remove(video.id);
+            await _PlaylistService.UpdateAsync(id, playlist);
+            await _VideoService.RemoveAsync(videoId);
+
+            return Redirect("/YTVideos/Videos/" + id);
         }
 
         public async Task<ActionResult<YouTubeVideo>> Get(string id)
@@ -64,13 +99,13 @@ namespace PlaylistES.Controllers
             return video;
         }
 
-        [HttpPost]
+        /*[HttpPost]
         public async Task<IActionResult> Post(YouTubeVideo newVideo)
         {
             await _VideoService.CreateAsync(newVideo);
 
             return CreatedAtAction(nameof(Get), new { id = newVideo.id }, newVideo);
-        }
+        }*/
 
         [HttpPut("{id:length(24)}")]
         public async Task<IActionResult> Update(string id, YouTubeVideo updatedVideo)
@@ -89,20 +124,7 @@ namespace PlaylistES.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id:length(24)}")]
-        public async Task<IActionResult> Delete(string id)
-        {
-            var video = await _VideoService.GetAsync(id);
-
-            if (video is null)
-            {
-                return NotFound();
-            }
-
-            await _VideoService.RemoveAsync(id);
-
-            return NoContent();
-        }
+        
     }
 }
 

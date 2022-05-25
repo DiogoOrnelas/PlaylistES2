@@ -49,12 +49,15 @@
                             <form action="/YTVideos/Videos/@Html.DisplayFor(modelItem=> item.PlaylistId)" method="get" id="formid">
                                 <button class="tool" ><i class="material-icons">edit</i></button>
                             </form>
-                            <form action="/Home/Watch" method="get">
+                            
+                            <form method="post" asp-action="Watch" asp-controller="YTVideos" asp-route-id="@item.PlaylistId"  asp-route-watch="Default">
                                 <button class="tool"  id="formid"><i class="material-icons">play_arrow</i></button>
                             </form>
-                            <form>
-                                <button class="delete" ><i class="material-icons">delete</i> </button>
+   
+                            <form class="delete" method="post" asp-action="Delete" asp-controller="Playlists" asp-route-id="@item.PlaylistId">
+                                <button class="delete" type="submit"><i class="material-icons">delete</i> </button>
                             </form>
+
                         </div>
                     </div>
             }

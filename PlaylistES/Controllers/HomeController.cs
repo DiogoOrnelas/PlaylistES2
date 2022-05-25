@@ -35,11 +35,7 @@ namespace PlaylistES.Controllers
 
             return View();
         }
-        public IActionResult Watch()
-        {
-
-            return View();
-        }
+        
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
