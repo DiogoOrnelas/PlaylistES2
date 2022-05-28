@@ -361,8 +361,12 @@ body {
         font: 15px;
         color: var(--Detail);
         width: 25px;
+        height: 25px;
         border-radius: 30%;
         background: rgba(255,255, 255, 0);
+        border:none;
+        justify-content:center;
+        align-content:center;
     }
 
         .ContentC .delete:hover {
