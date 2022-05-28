@@ -52,25 +52,26 @@
             </div>
             <div class="MoreVids"> 
                 @foreach (var item in Model) {
-
-                     <form class="NextVids" method="post" asp-action="Watch" asp-controller="YtVideos" asp-route-id="@playlist.PlaylistId" asp-route-watch="@item.Video_id" >
-                            <input type="hidden" name="id" value="@item.id">
-                            <input type="hidden" name="Video_id" value="@item.Video_id">
-                            <input type="hidden" name="VideoTitle" value="@item.VideoTitle">
-                            <input type="hidden" name="Thumbnail" value="@item.Thumbnail">
-                            <input type="hidden" name="PlaylistId" value="@item.PlaylistId"> 
-                            
+                   
+                   <form class="NextVids"  method="post" asp-action="Watch" asp-controller="YtVideos" asp-route-id="@playlist.PlaylistId" asp-route-watch="@item.Video_id" >
+                        <button class="PlayVid"  type="submit" ></button>
+                        <input type="hidden" name="id" value="@item.id">
+                        <input type="hidden" name="Video_id" value="@item.Video_id">
+                        <input type="hidden" name="VideoTitle" value="@item.VideoTitle">
+                        <input type="hidden" name="Thumbnail" value="@item.Thumbnail">
+                        <input type="hidden" name="PlaylistId" value="@item.PlaylistId"> 
                         
-                             <div class="Image-container">
-                                <img draggable="false" class="imgPL" src=@Html.DisplayFor(modelItem => item.Thumbnail)>
-                            </div>
-                              <div class="VideoTitle">@Html.DisplayFor(modelItem => item.VideoTitle)</div>
-                              <button class="addvid"  type="submit" >+</button>
-                          </form>
-   
+                    <div class="Image-container">
+                        <img draggable="false" class="imgPL" src=@Html.DisplayFor(modelItem => item.Thumbnail)>
+                    </div>
+                        <div class="VideoTitle">@Html.DisplayFor(modelItem => item.VideoTitle)</div>
+                        
+                      
+                   </form>
                 }
             </div> 
                 
+
     </div>
     <script>
       
