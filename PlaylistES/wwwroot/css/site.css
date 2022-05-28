@@ -6,7 +6,7 @@
     --SidebarB: #0c1c36;
     --SidebarTitle: #e8eeff;
     --SidebarTXT: #808080;
-    --Detail: #00b8f5; /* #e63030 */
+    --Detail: #e63030; /* #e63030 */
     --HoverBody: #7c97de;
     --BodyTitle: #212121;
     --BodyTXT: #363535;
@@ -362,6 +362,7 @@ body {
         color: var(--Detail);
         width: 25px;
         border-radius: 30%;
+        background: rgba(255,255, 255, 0);
     }
 
         .ContentC .delete:hover {
