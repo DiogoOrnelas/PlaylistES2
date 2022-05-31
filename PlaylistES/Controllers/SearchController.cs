@@ -76,8 +76,6 @@ namespace PlaylistES.Controllers
             ViewBag.Playlist = playlist;
 
             return Redirect("/Search/Search/"+id);
-            //return View();
-            //return CreatedAtAction(nameof(Get), new { id = newVideo.id }, newVideo);
         }
 
 
@@ -125,7 +123,7 @@ namespace PlaylistES.Controllers
             var searchListRequest = youtubeService.Search.List("snippet");
 
             searchListRequest.Q = searchKeyword;
-            searchListRequest.MaxResults = 10;
+            searchListRequest.MaxResults = 20;
 
             var searchListResponse = await searchListRequest.ExecuteAsync();
 

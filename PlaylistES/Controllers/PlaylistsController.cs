@@ -63,14 +63,13 @@ namespace PlaylistES.Controllers
         [HttpPost("{userId}")]
         public async Task<IActionResult> CreatePlaylist([FromForm] Playlists newPlaylist)
         {
-            Console.WriteLine("Hello there! this is playlist: "+ newPlaylist.PlaylistName );
             newPlaylist.PlaylistId = null;
             newPlaylist.Videos.Clear();
-            var user = await _UserService.GetOneIDAsync(newPlaylist.Creator_id);
-            //TODO: ALTER THIS ID?
-            user.Playlists.Add(newPlaylist.PlaylistId);
+
             await _PlaylistService.CreateAsync(newPlaylist);
-            await _UserService.UpdateAsync(user.UserId, user);
+
+            await updateUsersPlaylists(newPlaylist.Creator_id);
+
             return Redirect("/Playlists/MyPlaylists/"+newPlaylist.Creator_id);
         }
 
@@ -85,36 +84,27 @@ namespace PlaylistES.Controllers
                 await _VideoService.RemoveAsync(video.id);
 
             }
-            Console.WriteLine("playlist ID: " + playlist.PlaylistId);
-            Console.WriteLine("CREATOR ID: " + playlist.Creator_id);
-            var user = await _UserService.GetOneIDAsync(playlist.Creator_id);
 
-            user.Playlists.Remove(id);
-            await _UserService.UpdateAsync(user.UserId, user);
             await _PlaylistService.RemoveAsync(id);
+
+            await updateUsersPlaylists(playlist.Creator_id);
+
 
             return Redirect("/Playlists/MyPlaylists/"+playlist.Creator_id);
         }
 
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(string id, Playlists updatedPlaylist)
+        private async Task updateUsersPlaylists(string userId)
         {
-            var playlist = await _PlaylistService.GetOneAsync(id);
-
-            if (playlist is null)
-            {
-                return NotFound();
+            var playlists = await _PlaylistService.GetFromUserAsync(userId);
+            var user = await _UserService.GetOneIDAsync(userId);
+            user.Playlists.Clear();
+            foreach (var playlist in playlists) {
+                user.Playlists.Add(playlist.PlaylistId);
             }
-
-            updatedPlaylist.PlaylistId = playlist.PlaylistId;
-
-            await _PlaylistService.UpdateAsync(id, updatedPlaylist);
-
-            return NoContent();
+            await _UserService.UpdateAsync(user.UserId, user);  
         }
 
-        
     }
 }
 

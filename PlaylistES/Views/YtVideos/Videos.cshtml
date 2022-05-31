@@ -52,23 +52,29 @@
     </div>
 
     
-    <div class="VideoContainer" id="VideoContainer">
-    @foreach (var item in Model) {
+    
+        @if (@Model.Count() == 0)
+        {
+            <h1 > You have no videos here.. </h1> <br>
+            <h1> Let's start by adding a new video! </h1>
+        }
+        <div class="VideoContainer" id="VideoContainer">
+            @foreach (var item in Model) {
 
-            <div class="ContentC">
-                <div>
-                    <div class="header">
-                        <div class="VideoTitle">@Html.DisplayFor(modelItem => item.VideoTitle)</div>
-                        <form class="delete" method="post" asp-action="Delete" asp-controller="YtVideos" asp-route-id="@playlist.PlaylistId" asp-route-vidId="@item.Video_id">
-                            <button class="delete" type="submit"><i class="material-icons">delete</i></button>
-                        </form>
-                    </div>
-                    <div class="Image-container">
-                        <img draggable="false" class="imgPL" src=@Html.DisplayFor(modelItem => item.Thumbnail)>
-                    </div>                  
-                </div>  
-            </div>
-            }
+                <div class="ContentC">
+                    <div>
+                        <div class="header">
+                            <div class="VideoTitle">@Html.DisplayFor(modelItem => item.VideoTitle)</div>
+                            <form class="delete" method="post" asp-action="Delete" asp-controller="YtVideos" asp-route-id="@playlist.PlaylistId" asp-route-vidId="@item.Video_id">
+                                <button class="delete" type="submit"><i class="material-icons">delete</i></button>
+                            </form>
+                        </div>
+                        <div class="Image-container">
+                            <img draggable="false" class="imgPL" src=@Html.DisplayFor(modelItem => item.Thumbnail)>
+                        </div>                  
+                    </div>  
+                </div>
+                }
             
     </div>
    

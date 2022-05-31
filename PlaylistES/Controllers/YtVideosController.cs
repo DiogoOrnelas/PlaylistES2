@@ -102,30 +102,6 @@ namespace PlaylistES.Controllers
             return video;
         }
 
-        /*[HttpPost]
-        public async Task<IActionResult> Post(YouTubeVideo newVideo)
-        {
-            await _VideoService.CreateAsync(newVideo);
-
-            return CreatedAtAction(nameof(Get), new { id = newVideo.id }, newVideo);
-        }*/
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(string id, YouTubeVideo updatedVideo)
-        {
-            var user = await _VideoService.GetOneAsync(id);
-
-            if (user is null)
-            {
-                return NotFound();
-            }
-
-            updatedVideo.id = user.id;
-
-            await _VideoService.UpdateAsync(id, updatedVideo);
-
-            return NoContent();
-        }
 
         
     }
