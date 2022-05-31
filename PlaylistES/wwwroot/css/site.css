@@ -518,6 +518,16 @@ body {
                 display:flex;
                 justify-content:center;
             }
+            .PlaylistContainer .ContentCont .toolOff {
+                background-color: var(--SidebarB);
+                font-size: 50px;
+                color: gray;
+                width: 25px;
+                border-radius: 30%;
+                border: none;
+                display: flex;
+                justify-content: center;
+            }
 
             .PlaylistContainer .ContentCont .tool:hover {
                 color: white;

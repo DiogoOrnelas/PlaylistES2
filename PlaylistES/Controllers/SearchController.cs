@@ -10,31 +10,28 @@ namespace PlaylistES.Controllers
     [Route("[controller]/[action]")]
     public class SearchController : Controller
     {
-        
+
+        private readonly UserService _UserService;
         private readonly YtVideoService _VideoService;
         private readonly PlaylistsService _PlaylistService;
 
 
-        public SearchController(YtVideoService videoService, PlaylistsService playlistService)
+        public SearchController(UserService userService,YtVideoService videoService, PlaylistsService playlistService)
         {
+            _UserService = userService;
             _VideoService = videoService;
             _PlaylistService = playlistService;
         }
 
-        /*[HttpGet]
-        public async Task<IActionResult> Search()
-        {
-            var data = await _VideoService.GetAsync();
-            return View(data);
-        }*/
 
         [HttpGet("{id:length(24)}")]
-        [Route("Search/Search/{id:length(24)}")]
+        [Route("Search/Search/{id}")]
         public async Task<IActionResult> Search(string id)
         {
             ICollection<YouTubeVideo> allVideos = new List<YouTubeVideo>();
             var playlist = await _PlaylistService.GetOneAsync(id);
             string urlQuery = HttpContext.Request.QueryString.ToString();
+            var user = await _UserService.GetOneIDAsync(playlist.Creator_id);
 
             if (urlQuery.Length > 3)
             {
@@ -55,34 +52,16 @@ namespace PlaylistES.Controllers
             
 
             ViewBag.Playlist = playlist;
+            ViewBag.user = user;
 
             return View(allVideos);
         }
 
-        /*public async Task<IActionResult> Add(string id)
-        {
-            var playlist = await _PlaylistService.GetOneAsync(id);
-
-            return View();
-        }*/
-        
-        
-       /* public async Task<ActionResult<YouTubeVideo>> Get(string id)
-        {
-            var video = await _VideoService.GetOneAsync(id);
-
-            if (video is null)
-            {
-                return NotFound();
-            }
-
-            return video;
-        */
 
 
 
         [HttpPost]
-        [Route("Search/Search/Search/Search/{id:length(24)}")]
+        [Route("Search/Search/Search/Search/{id}")]
         public async Task<IActionResult> Search(string id, [FromForm] YouTubeVideo newVideo)
         {
 
@@ -103,7 +82,7 @@ namespace PlaylistES.Controllers
 
 
 
-        [HttpPut("{id:length(24)}")]
+        [HttpPut("{id}")]
         public async Task<IActionResult> Update(string id, YouTubeVideo updatedVideo)
         {
             var user = await _VideoService.GetOneAsync(id);
@@ -120,7 +99,7 @@ namespace PlaylistES.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id:length(24)}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
             var video = await _VideoService.GetAsync(id);

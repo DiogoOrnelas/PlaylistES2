@@ -16,13 +16,19 @@
 
 @*@if (SignInManager.IsSignedIn(User))
 {*@
-      <nav class="navmenu">
-        <ul class="menuItems">
-            <a href='/Home/Home'><li>Home</li></a>
-            <a href='/Playlists/MyPlaylists'><li>My Playlists</li></a>   
-            <a href="/" ><li>Account</li></a>
-        </ul>
-    </nav>
+    @{
+        User user= ViewBag.user; 
+    }
+       @if(user != null){
+          <nav class="navmenu">
+            <ul class="menuItems">
+                <a href='/Home/Home/@user.UserId'><li>Home</li></a>
+                <a href='/Playlists/MyPlaylists/@user.UserId'><li>My Playlists</li></a>   
+                <a href="/Home/Index" ><li>Account</li></a>
+            </ul>
+            </nav> 
+       }
+
 @*}
 else
 {

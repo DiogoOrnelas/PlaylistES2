@@ -11,19 +11,19 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
     <body>
-        <form>
+        <form method="post" asp-action="LoginUser" asp-controller="Home">
         <div class="form-container">
             <div class="formlogin">
                 <h2>Login</h2>
                 <div class="input">
                     <div class="inputBox">
                         <label for="">Username</label>
-                        <input type="text">
+                        <input type="text" name="username" value="" required>
                     </div>
                     <div class="inputBox">
                         <label for="">Password</label>
                         <div class="flex">
-                            <input id="pwinput" type="password" required> <button type="button" class="eye" onclick=TogglePW()><i class="material-icons">visibility</i></button>
+                            <input id="pwinput" type="password" name="password" value=""> <button class="eye" onclick=TogglePW() type="button"><i class="material-icons">visibility</i></button>
                         </div>
                     </div>
                     <div class="inputBox">

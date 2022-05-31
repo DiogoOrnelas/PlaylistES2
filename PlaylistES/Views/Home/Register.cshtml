@@ -11,31 +11,37 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
     <body>
-        <form method="post">
+        <form method="post" asp-action="CreateUser" asp-controller="Home">
             <div class="form-container">
                 <div class="formlogin">
+                    <div class="inputBox">
+                 
                     <h2>Register</h2>
                     <div class="input">
+                        <input type="hidden" name="UserId" value="debugId">  
                         <div class="inputBox">
                             <label for="">Username</label>
-                            <input type="text" required>
+                            <input type="text" name="username" value="" required>
                         </div>
                         <div class="inputBox">
 
                             <label for="">Password</label>
                             <div class="flex">
-                                <input id="pwinput" type="password" required> <button class="eye" onclick=TogglePW() type="button"><i class="material-icons">visibility</i></button>
+                                 <input id="pwinput" type="password" name="password" value=""> <button class="eye" onclick=TogglePW() type="button"><i class="material-icons">visibility</i></button>
                             </div>
                             <label for="">Confirm password</label>
                             <div class="flex">
-                                <input id="pwinput2" type="password" required> <button class="eye" onclick=TogglePW2() type="button"><i class="material-icons">visibility</i></button>
-                            </div>
+                                 <input id="pwinput2" type="password" required> <button class="eye" onclick=TogglePW2() type="button"><i class="material-icons">visibility</i></button>
                         </div>
+                        <input type="hidden" name="Profilepicture" value="https://static.vecteezy.com/ti/vetor-gratis/p1/2534006-social-media-chatting-online-blank-profile-picture-head-and-body-icon-people-standing-icon-gray-background-gr%C3%A1tis-vetor.jpg">
+                        <input type="hidden" name="Playlists" value="debug"> 
                         <div class="inputBox">
                             <input type="submit" name="" value="Sign In"> 
                         </div>   
-                    </div>  
-                </div>
+                    </div>
+                    </div>   
+                 </div>
+               </div>
             </div>
         </form>
     </body>
@@ -60,4 +66,18 @@
            pw.setAttribute("type","password")
        }
     }
+
+    var password = document.getElementById("pwinput");
+    var confirm_password = document.getElementById("pwinput2");
+
+    function validatePassword(){
+      if(password.value != confirm_password.value) {
+        confirm_password.setCustomValidity("Passwords Don't Match");
+      } else {
+        confirm_password.setCustomValidity('');
+      }
+    }
+
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
 </script>

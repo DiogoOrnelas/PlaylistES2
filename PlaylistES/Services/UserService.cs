@@ -26,8 +26,14 @@ namespace PlaylistES.Services
         public async Task<List<User>> GetAsync() =>
             await _UserCollection.Find(_ => true).ToListAsync();
 
-        public async Task<User?> GetAsync(string id) =>
+        public async Task<User?> GetOneIDAsync(string id) =>
             await _UserCollection.Find(x => x.UserId == id).FirstOrDefaultAsync();
+
+        public async Task<User?> GetOneAsync(string username, string password) =>
+            await _UserCollection.Find(x => x.username == username && x.password == password).FirstOrDefaultAsync();
+
+        public async Task<User?> checkUsernameAsync(string username) =>
+           await _UserCollection.Find(x => x.username == username).FirstOrDefaultAsync();
 
         public async Task CreateAsync(User newUser) =>
             await _UserCollection.InsertOneAsync(newUser);

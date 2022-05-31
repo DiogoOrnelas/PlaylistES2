@@ -25,8 +25,9 @@ namespace PlaylistES.Services
         public async Task<List<Playlists>> GetAsync() =>
             await _PlaylistCollection.Find(_ => true).ToListAsync();
 
-        public async Task<List<Playlists>> GetAsync(string id) =>
-            await _PlaylistCollection.Find(x => x.PlaylistId == id).ToListAsync();
+        public async Task<List<Playlists>> GetFromUserAsync(string id) =>
+            await _PlaylistCollection.Find(x => x.Creator_id == id).ToListAsync();
+
         public async Task<Playlists?> GetOneAsync(string id) =>
             await _PlaylistCollection.Find(x => x.PlaylistId == id).FirstOrDefaultAsync();
 
