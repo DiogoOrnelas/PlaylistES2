@@ -38,7 +38,6 @@ namespace PlaylistES.Services
         public async Task CreateAsync(User newUser) =>
             await _UserCollection.InsertOneAsync(newUser);
 
-
         public async Task UpdateAsync(string id, User updatedUser) =>
             await _UserCollection.ReplaceOneAsync(x => x.UserId == id, updatedUser);
 

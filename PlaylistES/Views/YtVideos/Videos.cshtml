@@ -43,7 +43,7 @@
             <div class="PLTitle">
                   Add More Videos!
             </div> 
-            <form action="/Search/Search/@playlist.PlaylistId" method="get">
+            <form method="get" asp-action="Search" asp-controller="Search" asp-route-id="@playlist.PlaylistId">
             <button class="addcontent" >
                 <i class="material-icons">library_add</i>
             </button>
@@ -88,9 +88,4 @@
       animation: 500
     });
 
-
-    function runSearch(){
-        var urlQuery =  HttpContext.Request.QueryString.ToString();
-        Console.WriteLine("TESTE" + urlQuery);
-    }
   </script>

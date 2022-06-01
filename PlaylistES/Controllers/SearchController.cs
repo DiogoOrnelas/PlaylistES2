@@ -35,20 +35,13 @@ namespace PlaylistES.Controllers
             if (urlQuery.Length > 3)
             {
                 string searchKeyword = urlQuery.Substring(3);
-                Console.WriteLine("Looking for: " + searchKeyword + "\n");
 
                 foreach (var video in await fetchVideos(searchKeyword))
                 {
-                    Console.WriteLine("Converting...\n");
                     allVideos.Add(await setupVideo(id, video));
-                    Console.WriteLine("converted!!\n");
                 }
-                Console.WriteLine("ALL SET!");
-            }
-            else {
-                Console.WriteLine("Not looking for anything yet....\n");
-            }
-            
+
+            }            
 
             ViewBag.Playlist = playlist;
             ViewBag.user = user;
@@ -76,39 +69,6 @@ namespace PlaylistES.Controllers
             return Redirect("/Search/Search/"+id);
         }
 
-
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(string id, YouTubeVideo updatedVideo)
-        {
-            var user = await _VideoService.GetOneAsync(id);
-
-            if (user is null)
-            {
-                return NotFound();
-            }
-
-            updatedVideo.id = user.id;
-
-            await _VideoService.UpdateAsync(id, updatedVideo);
-
-            return NoContent();
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(string id)
-        {
-            var video = await _VideoService.GetAsync(id);
-
-            if (video is null)
-            {
-                return NotFound();
-            }
-
-            await _VideoService.RemoveAsync(id);
-
-            return NoContent();
-        }
 
         private async Task<ICollection<string>> fetchVideos(string searchKeyword) {
            
@@ -165,8 +125,6 @@ namespace PlaylistES.Controllers
             }
             return videoDetails;
         }
-        
-        public async Task<List<YouTubeVideo>> Get() => await _VideoService.GetAsync();
     }
 
 }
