@@ -28,9 +28,6 @@ namespace PlaylistES.Controllers
             return View(data);
         }
 
-        public async Task<List<YouTubeVideo>> Get() =>
-            await _VideoService.GetAsync();
-
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Videos(string id)
@@ -85,25 +82,11 @@ namespace PlaylistES.Controllers
             var playlist = await _PlaylistService.GetOneAsync(id);
             playlist.Videos.Remove(video.id);
             await _PlaylistService.UpdateAsync(id, playlist);
-            await _VideoService.RemoveAsync(videoId);
+            await _VideoService.RemoveAsync(video.id);
 
             return Redirect("/YTVideos/Videos/" + id);
         }
 
-        public async Task<ActionResult<YouTubeVideo>> Get(string id)
-        {
-            var video = await _VideoService.GetOneAsync(id);
-
-            if (video is null)
-            {
-                return NotFound();
-            }
-
-            return video;
-        }
-
-
-        
     }
 }
 

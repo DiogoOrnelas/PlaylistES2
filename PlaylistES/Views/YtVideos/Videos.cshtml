@@ -15,9 +15,9 @@
 </head>
 <body>
     @{
-    Playlists playlist = ViewBag.Playlist; 
-    User user = ViewBag.user; 
-}
+        Playlists playlist = ViewBag.Playlist; 
+        User user = ViewBag.user; 
+    }
     <div class="SideBar">
         <div class="ProfContainer">  
             <img draggable="false" class="imgP" src=@user.Profilepicture>
@@ -55,8 +55,10 @@
     
         @if (@Model.Count() == 0)
         {
-            <h1 > You have no videos here.. </h1> <br>
-            <h1> Let's start by adding a new video! </h1>
+             <div class="empty">
+                <h1 > You have no videos here.. </h1> <br>
+                <h1> Let's start by adding a new video! </h1>
+             </div>
         }
         <div class="VideoContainer" id="VideoContainer">
             @foreach (var item in Model) {

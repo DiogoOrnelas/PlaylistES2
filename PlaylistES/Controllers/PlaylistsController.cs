@@ -33,9 +33,6 @@ namespace PlaylistES.Controllers
         }
 
 
-        public async Task<List<Playlists>> Get() =>
-            await _PlaylistService.GetAsync();
-        
         [HttpGet("{userId}")]
         public async Task<IActionResult> CreatePlaylist(string userId)
         {
@@ -43,20 +40,6 @@ namespace PlaylistES.Controllers
 
             ViewBag.user = user;
             return View();
-        }
-
-
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Playlists>> Get(string id)
-        {
-            var playlist = await _PlaylistService.GetOneAsync(id);
-
-            if (playlist is null)
-            {
-                return NotFound();
-            }
-
-            return playlist;
         }
 
 
@@ -82,7 +65,7 @@ namespace PlaylistES.Controllers
             foreach (var video in videos)
             {
                 await _VideoService.RemoveAsync(video.id);
-
+                Console.WriteLine("I'm removing this video!:" + video.id);
             }
 
             await _PlaylistService.RemoveAsync(id);

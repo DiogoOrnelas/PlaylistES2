@@ -22,6 +22,7 @@ namespace PlaylistES.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.Message= TempData["Message"];
             return View();
         }
 
@@ -44,20 +45,20 @@ namespace PlaylistES.Controllers
 
         public IActionResult Register()
         {
-
+            ViewBag.Message = TempData["Message"];
             return View();
         }
+
+
         [HttpPost]
         public async Task<IActionResult> LoginUser([FromForm] string username, [FromForm] string password)
         {
             var user = await fetchUser(username, password);
             if (user is null)
             {
-                //TODO: SHOW ERROR
-                Console.WriteLine("Combination of username and password is not correct..");
+                TempData["Message"] = "Combination of username and password is not correct!";
                 return Redirect("/Home/index");
             }
-            Console.WriteLine("User logging in: " + user.username);
             return Redirect("/Home/Home/"+user.UserId);
         }
         [HttpPost]
@@ -69,12 +70,12 @@ namespace PlaylistES.Controllers
             if (userAlreadyExists is null)
             {
                 await _UserService.CreateAsync(newUser);
-                Console.WriteLine("User created: " + newUser.username);
+
                 return Redirect("/Home/index");
             }
             else {
-                //TODO: SHOW ERROR
-                Console.WriteLine("User already exists!");
+                TempData["Message"]="This Username already exists!";
+
                 return Redirect("/Home/Register");
             }
         }
@@ -87,6 +88,7 @@ namespace PlaylistES.Controllers
             {
                 return null;
             }
+
             return user;
         }
 

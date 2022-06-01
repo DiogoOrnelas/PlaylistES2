@@ -39,6 +39,6 @@ namespace PlaylistES.Services
             await _VideoCollection.ReplaceOneAsync(x => x.id == id, updatedVideo);
 
         public async Task RemoveAsync(string id) =>
-            await _VideoCollection.DeleteOneAsync(x => x.Video_id == id);
+            await _VideoCollection.DeleteOneAsync(x => x.id == id);
     }
 }

@@ -24,8 +24,7 @@ namespace PlaylistES.Controllers
         }
 
 
-        [HttpGet("{id:length(24)}")]
-        [Route("Search/Search/{id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> Search(string id)
         {
             ICollection<YouTubeVideo> allVideos = new List<YouTubeVideo>();
@@ -60,8 +59,7 @@ namespace PlaylistES.Controllers
 
 
 
-        [HttpPost]
-        [Route("Search/Search/Search/Search/{id}")]
+        [HttpPost("{id}")]
         public async Task<IActionResult> Search(string id, [FromForm] YouTubeVideo newVideo)
         {
 

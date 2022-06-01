@@ -143,6 +143,7 @@ body {
         display: grid;
         min-width: auto;
         justify-content: center;
+        justify-items: center
     }
 
         .SideBar .PLContainer2 .PLTitle {
@@ -884,7 +885,7 @@ body {
         color: var(--SidebarTitle);
         text-shadow: 5px 5px 10px var(--Detail);
     }
-    h1 {
+    .empty h1 {
         color: var(--SidebarTitle);
         margin-left: auto;
         margin-right: auto;

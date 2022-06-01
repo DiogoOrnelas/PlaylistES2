@@ -11,6 +11,17 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
     <body>
+    @{
+        var msg = ViewData["message"];
+    }
+        @if (msg != null)
+        {
+            <script type="text/javascript">
+                window.onload = function () {
+                    alert("@msg");
+                };
+            </script>
+        } 
         <form method="post" asp-action="CreateUser" asp-controller="Home">
             <div class="form-container">
                 <div class="formlogin">
